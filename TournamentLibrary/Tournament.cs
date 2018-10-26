@@ -4,6 +4,8 @@ namespace TournamentLib
 {
     public class Tournament
     {
+		private List<Team> teams = new List<Team>();
+		private List<Round> rounds = new List<Round>();
         public string Name { get; private set; }
 
         public Tournament(string tournamentName)
