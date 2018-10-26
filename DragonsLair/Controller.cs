@@ -11,29 +11,36 @@ namespace DragonsLair
 
 		public void ShowScore(string tournamentName)
 		{
-			Tournament t = tournamentRepository.GetTournament(tournamentName);
-			Dictionary<string, int> teams = new Dictionary<string, int>();
-			List<Team> teamsFormT = t.GetTeams();
-			
-			for (int i = 0; i < teamsFormT.Count; i++)
+			Tournament tor = tournamentRepository.GetTournament(tournamentName);
+			Team[] teams = tor.GetTeams().ToArray();
+			int[] scores = new int[teams.Length];
+
+			for (int i = 0; i < tor.GetNumberOfRounds(); i++)
 			{
-				teams.Add(teamsFormT[i].Name, 0);
-			}
-			for (int i = 0; i < t.GetNumberOfRounds(); i++)
-			{
-				Round r = t.GetRound(i);
-				List<Team> winners = r.GetWinningTeams();
-				for (int j = 0; j < winners.Count; j++)
+				Round round = tor.GetRound(i);
+				List<Team> winningTeams = round.GetWinningTeams();
+				for (int teamI = 0; teamI < teams.Length; teamI++)
 				{
-					teams[winners[j].Name]++;
+					for (int winningTeamI = 0; winningTeamI < winningTeams.Count; winningTeamI++)
+					{
+						if (teams[teamI].Name == winningTeams[winningTeamI].Name)
+						{
+							scores[teamI]++;
+						}
+					}
 				}
 			}
-			List < KeyValuePair<string, int> > keyValue = teams.ToList();
-			keyValue = keyValue.OrderByDescending(x => x.Value).ToList();
-			for (int i = 0; i < keyValue.Count; i++)
+			for (int num = scores.Max(); num >= 0; num--)
 			{
-				Console.WriteLine($"Name: {keyValue[i].Key}, Score: {keyValue[i].Value}");
+				for (int i = 0; i < teams.Length; i++)
+				{
+					if (scores[i] == num)
+					{
+						Console.WriteLine($"team: {teams[i]}, Score: {scores[i]}");
+					}
+				}
 			}
+
             Console.WriteLine("\n\n");
         }
 
