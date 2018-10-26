@@ -13,6 +13,7 @@ namespace TestVersion1
 		public void SetupForTest()
 		{
 			currentTournament = new Tournament("Vinter Turnering");
+			currentTournament.SetupTestRounds();
 		}
 
 		[TestMethod]
