@@ -9,6 +9,7 @@ namespace DragonsLair
 	{
 		private TournamentRepo tournamentRepository = new TournamentRepo();
 
+
 		public void ShowScore(string tournamentName)
 		{
 			Tournament tor = tournamentRepository.GetTournament(tournamentName);
@@ -44,21 +45,23 @@ namespace DragonsLair
 			Console.WriteLine("\n\n");
 		}
 
+
 		public TournamentRepo GetTournamentRepository()
 		{
 			return tournamentRepository;
 		}
 
+
 		public void ScheduleNewRound(string tournamentName, bool printNewMatches = true)
 		{
+			Tournament t = tournamentRepository.GetTournament(tournamentName);
 			List<Team> teams = new List<Team>();
 			List<Team> scrambled = new List<Team>();
-			Tournament t = tournamentRepository.GetTournament(tournamentName);
-			int numberOfRounds = t.GetNumberOfRounds();
-			bool isRoundFinished;
 			Round lastRound;
 			Round newRound;
 			Team oldFreeRider;
+			bool isRoundFinished;
+			int numberOfRounds = t.GetNumberOfRounds();
 
 			if (numberOfRounds == 0)
 			{
@@ -136,6 +139,7 @@ namespace DragonsLair
 				throw new Exception("RoundNotFinished");
 			}
 		}
+
 
 		public void SaveMatch(string tournamentName, int roundNumber, string team1, string team2, string winningTeam)
 		{
