@@ -92,7 +92,7 @@ namespace DragonsLair
 				if (teams.Count >= 2)
 				{
 					newRound = new Round();
-					scrambled = teams.ToList();
+					scrambled = scramble(teams.ToList());
 
 					if (scrambled.Count % 2 != 0)
 					{
@@ -138,6 +138,25 @@ namespace DragonsLair
 			{
 				throw new Exception("RoundNotFinished");
 			}
+		}
+
+		
+		private List<Team> scramble(List<Team> listToScramble)
+		{
+			Random randome = new Random();
+			for (int i = 0; i < listToScramble.Count; i++)
+			{
+				listToScramble = swap(listToScramble.ToList(), i, randome.Next(0, listToScramble.Count-1));
+			}
+			return listToScramble;
+		}
+
+		private List<Team> swap(List<Team> list, int i, int v)
+		{
+			Team temp = list[i];
+			list[i] = list[v];
+			list[v] = temp;
+			return list;
 		}
 
 
