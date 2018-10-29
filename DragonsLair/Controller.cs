@@ -58,6 +58,7 @@ namespace DragonsLair
 			List<Team> teams = new List<Team>();
 			List<Team> scrambled = new List<Team>();
 			Round lastRound;
+			Round newRound;
 			Team oldFreeRider;
 			bool isRoundFinished;
 			int numberOfRounds = t.GetNumberOfRounds();
@@ -90,8 +91,8 @@ namespace DragonsLair
 
 				if (teams.Count >= 2)
 				{
-					Round newRound = new Round();
-					scrambled = teams.ToList();
+					newRound = new Round();
+					scrambled = scramble(teams.ToList());
 
 					if (scrambled.Count % 2 != 0)
 					{
@@ -126,8 +127,7 @@ namespace DragonsLair
 
 					t.AddRound(newRound);
 
-					if (printNewMatches)
-						ShowScore(tournamentName);
+					if (printNewMatches) ShowScore(tournamentName);
 				}
 				else
 				{
@@ -140,14 +140,27 @@ namespace DragonsLair
 			}
 		}
 
+		
+		private List<Team> scramble(List<Team> listToScramble)
+		{
+			Random randome = new Random();
+			for (int i = 0; i < listToScramble.Count; i++)
+			{
+				listToScramble = swap(listToScramble.ToList(), i, randome.Next(0, listToScramble.Count-1));
+			}
+			return listToScramble;
+		}
 
-		public void SaveMatch(
-			string tournamentName,
-			int roundNumber,
-			string team1,
-			string team2,
-			string winningTeam
-			)
+		private List<Team> swap(List<Team> list, int i, int v)
+		{
+			Team temp = list[i];
+			list[i] = list[v];
+			list[v] = temp;
+			return list;
+		}
+
+
+		public void SaveMatch(string tournamentName, int roundNumber, string team1, string team2, string winningTeam)
 		{
 			// Do not implement this method
 		}
