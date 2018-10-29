@@ -127,7 +127,7 @@ namespace DragonsLair
 
 					t.AddRound(newRound);
 
-					//if (printNewMatches) ShowScore(tournamentName);
+					if (printNewMatches) ShowScore(tournamentName);
 				}
 				else
 				{
