@@ -58,7 +58,6 @@ namespace DragonsLair
 			List<Team> teams = new List<Team>();
 			List<Team> scrambled = new List<Team>();
 			Round lastRound;
-			Round newRound;
 			Team oldFreeRider;
 			bool isRoundFinished;
 			int numberOfRounds = t.GetNumberOfRounds();
@@ -91,7 +90,7 @@ namespace DragonsLair
 
 				if (teams.Count >= 2)
 				{
-					newRound = new Round();
+					Round newRound = new Round();
 					scrambled = teams.ToList();
 
 					if (scrambled.Count % 2 != 0)
