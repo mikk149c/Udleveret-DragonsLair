@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace TournamentLib
 {
-    public class Team : IEquatable<Team>
+    public class Team
 	{
         public string Name { get; set; }
 
@@ -16,10 +16,5 @@ namespace TournamentLib
         {
             return Name;
         }
-
-		public bool Equals(Team other)
-		{
-			return Name == other.Name;
-		}
 	}
 }
