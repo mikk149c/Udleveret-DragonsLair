@@ -78,8 +78,8 @@ namespace TournamentLib
 			match1.FirstOpponent = team1;
 			match1.SecondOpponent = team2;
 			match1.Winner = team1;
-			teams.Add(team1);
-			teams.Add(team2);
+			//teams.Add(team1);
+			//teams.Add(team2);
 			round1.AddMatch(match1);
 
 			Match match2 = new Match();
@@ -88,8 +88,8 @@ namespace TournamentLib
 			match2.FirstOpponent = team3;
 			match2.SecondOpponent = team4;
 			match2.Winner = team4;
-			teams.Add(team3);
-			teams.Add(team4);
+			//teams.Add(team3);
+			//teams.Add(team4);
 			round1.AddMatch(match2);
 
 			Match match3 = new Match();
@@ -98,8 +98,8 @@ namespace TournamentLib
 			match3.FirstOpponent = team5;
 			match3.SecondOpponent = team6;
 			match3.Winner = team5;
-			teams.Add(team5);
-			teams.Add(team6);
+			//teams.Add(team5);
+			//teams.Add(team6);
 			round1.AddMatch(match3);
 
 			Match match4 = new Match();
@@ -108,8 +108,8 @@ namespace TournamentLib
 			match4.FirstOpponent = team7;
 			match4.SecondOpponent = team8;
 			match4.Winner = team8;
-			teams.Add(team7);
-			teams.Add(team8);
+			//teams.Add(team7);
+			//teams.Add(team8);
 			round1.AddMatch(match4);
 
 			rounds.Add(round1);

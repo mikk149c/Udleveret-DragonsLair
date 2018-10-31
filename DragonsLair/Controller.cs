@@ -13,6 +13,7 @@ namespace DragonsLair
 		public void ShowScore(string tournamentName)
 		{
 			Tournament tor = tournamentRepository.GetTournament(tournamentName);
+			tor.SetupTestRounds();
 			Team[] teams = tor.GetTeams().ToArray();
 			int[] scores = new int[teams.Length];
 
@@ -58,6 +59,7 @@ namespace DragonsLair
 			List<Team> teams = new List<Team>();
 			List<Team> scrambled = new List<Team>();
 			Round lastRound;
+			Round newRound;
 			Team oldFreeRider;
 			bool isRoundFinished;
 
@@ -91,8 +93,8 @@ namespace DragonsLair
 
 				if (teams.Count >= 2)
 				{
-					Round newRound = new Round();
-					scrambled = teams.ToList();
+					newRound = new Round();
+					scrambled = scramble(teams.ToList());
 
 					if (scrambled.Count % 2 != 0)
 					{
@@ -127,8 +129,7 @@ namespace DragonsLair
 
 					t.AddRound(newRound);
 
-					if (printNewMatches)
-						ShowScore(tournamentName);
+					if (printNewMatches) ShowScore(tournamentName);
 				}
 				else
 				{
@@ -139,6 +140,24 @@ namespace DragonsLair
 			{
 				throw new Exception("RoundNotFinished");
 			}
+		}
+
+		
+		private List<Team> scramble(List<Team> listToScramble)
+		{
+			Random randome = new Random();
+			for (int i = 0; i < listToScramble.Count; i++)
+			{
+				swap(ref listToScramble, i, randome.Next(0, listToScramble.Count-1));
+			}
+			return listToScramble;
+		}
+
+		private void swap(ref List<Team> list, int i, int v)
+		{
+			Team temp = list[i];
+			list[i] = list[v];
+			list[v] = temp;
 		}
 
 
