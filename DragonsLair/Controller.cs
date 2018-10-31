@@ -94,7 +94,8 @@ namespace DragonsLair
 				if (teams.Count >= 2)
 				{
 					newRound = new Round();
-					scrambled = scramble(teams.ToList());
+					//scrambled = scramble(teams.ToList());
+					scrambled = teams.ToList();
 
 					if (scrambled.Count % 2 != 0)
 					{
