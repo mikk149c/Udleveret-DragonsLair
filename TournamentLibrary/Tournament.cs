@@ -18,7 +18,17 @@ namespace TournamentLib
 		{
 			return teams;
 		}
-
+        public Team GetTeam(string teamName)
+        {
+            for (int i = 0; i < teams.Count; i++)
+            {
+                if (teams[i].Name == teamName)
+                {
+                    return teams[i];
+                }
+            }
+            return null;
+        }
 		public void AddTeam(Team team)
 		{
 			teams.Add(team);

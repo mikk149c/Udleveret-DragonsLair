@@ -28,6 +28,18 @@ namespace TournamentLib
             return null;
         }
 
+        public Match GetMatch(string team)
+        {
+            for (int i = 0; i < matches.Count; i++)
+            {
+                if (matches[i].FirstOpponent.Name == team || matches[i].SecondOpponent.Name == team)
+                {
+                    return matches[i];
+                }
+            }
+            return null;
+        }
+
         public bool IsMatchesFinished()
         {
 			for (int i = 0; i < matches.Count; i++)

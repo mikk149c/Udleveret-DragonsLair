@@ -60,7 +60,8 @@ namespace DragonsLair
 			Round lastRound;
 			Team oldFreeRider;
 			bool isRoundFinished;
-			int numberOfRounds = t.GetNumberOfRounds();
+
+            int numberOfRounds = t.GetNumberOfRounds();
 
 			if (numberOfRounds == 0)
 			{
@@ -141,9 +142,22 @@ namespace DragonsLair
 		}
 
 
-		public void SaveMatch(string tournamentName, int roundNumber, string team1, string team2, string winningTeam)
+		public void SaveMatch(string tournamentName, int roundNumber, string winningTeam)
 		{
-			// Do not implement this method
+            Tournament t = tournamentRepository.GetTournament(tournamentName);
+            Round r = t.GetRound(roundNumber);
+            Match m = r.GetMatch(winningTeam);
+
+            if (m != null && m.Winner == null)
+            {
+                Team w = t.GetTeam(winningTeam);
+                Console.WriteLine($"Kampen mellem {m.FirstOpponent} og {m.SecondOpponent} i runde {roundNumber} i turneringen {tournamentName} er nu afviklet. Vinderen blev {winningTeam}.");
+                m.Winner = w;
+            }
+            else
+            {
+                Console.WriteLine($"Holdet {winningTeam} kan ikke være vinder i runde 2, da holdet enten ikke deltager i runde 2 eller kampen allerede er registreret med en vinder.");
+            }
 		}
 	}
 }
