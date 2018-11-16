@@ -13,7 +13,6 @@ namespace DragonsLair
 		public void ShowScore(string tournamentName)
 		{
 			Tournament tor = tournamentRepository.GetTournament(tournamentName);
-			tor.SetupTestRounds();
 			Team[] teams = tor.GetTeams().ToArray();
 			int[] scores = new int[teams.Length];
 
@@ -130,7 +129,7 @@ namespace DragonsLair
 
 					t.AddRound(newRound);
 
-					if (printNewMatches) ShowScore(tournamentName);
+					//if (printNewMatches) ShowScore(tournamentName);
 				}
 				else
 				{
