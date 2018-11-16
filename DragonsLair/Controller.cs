@@ -183,6 +183,7 @@ namespace DragonsLair
 			Tournament t = tournamentRepository.GetTournament(tournamentName);
 			foreach (string s in teams)
 				t.AddTeam(new Team(s));
+			t.SaveTeams();
 		}
 	}
 }

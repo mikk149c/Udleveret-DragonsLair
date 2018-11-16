@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
 
 namespace TournamentLib
 {
@@ -141,6 +143,18 @@ namespace TournamentLib
 			round3.AddMatch(match7);
 
 			rounds.Add(round3);
+		}
+
+		public void SaveTeams()
+		{
+			string path = $"{Name}/Teams.txt";
+			Directory.CreateDirectory(Name);
+			if (File.Exists(path))
+				File.Delete(path);
+			StreamWriter stream = File.CreateText(path);
+			foreach (Team t in teams)
+				stream.WriteLine(t.Name);
+			stream.Close();
 		}
 	}
 }
