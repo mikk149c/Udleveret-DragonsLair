@@ -143,7 +143,6 @@ namespace DragonsLair
 			}
 		}
 
-		
 		private List<Team> scramble(List<Team> listToScramble)
 		{
 			Random randome = new Random();
@@ -178,6 +177,13 @@ namespace DragonsLair
             {
                 Console.WriteLine($"Holdet {winningTeam} kan ikke være vinder i runde 2, da holdet enten ikke deltager i runde 2 eller kampen allerede er registreret med en vinder.");
             }
+		}
+
+		internal void AddTeams(string tournamentName, List<string> teams)
+		{
+			Tournament t = tournamentRepository.GetTournament(tournamentName);
+			foreach (string s in teams)
+				t.AddTeam(new Team(s));
 		}
 	}
 }
