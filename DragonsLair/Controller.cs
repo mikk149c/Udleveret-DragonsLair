@@ -177,7 +177,7 @@ namespace DragonsLair
             }
 		}
 
-		internal void AddTeams(string tournamentName, List<string> teams)
+		public void AddTeams(string tournamentName, List<string> teams)
 		{
 			Tournament t = tournamentRepository.GetTournament(tournamentName);
 			foreach (string s in teams)

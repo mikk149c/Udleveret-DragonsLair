@@ -147,12 +147,12 @@ namespace TournamentLib
 
 		public void SaveTeams()
 		{
-			string path = $"{Name}/Teams.txt";
-			Directory.CreateDirectory(Name);
-			if (File.Exists(path))
+			string path = $"{Name}/Teams.txt";	// In the tournament subfolder there is a text file called Teams.txt
+			Directory.CreateDirectory(Name);	// Create a foulder with the name of the tournament
+			if (File.Exists(path))	// If a text file excists called Teams.txt, delete it
 				File.Delete(path);
 			StreamWriter stream = File.CreateText(path);
-			foreach (Team t in teams)
+			foreach (Team t in teams)	// For each team in this object, write the name of the team to the teams.txt file on a new line
 				stream.WriteLine(t.Name);
 			stream.Close();
 		}
