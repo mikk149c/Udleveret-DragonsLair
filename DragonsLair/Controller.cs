@@ -184,5 +184,11 @@ namespace DragonsLair
 				t.AddTeam(new Team(s));
 			t.SaveTeams();
 		}
+
+		internal void ShowTeams(string tournamentName)
+		{
+			Tournament t = tournamentRepository.GetTournament(tournamentName);
+			t.PrintTeams();
+		}
 	}
 }

@@ -156,5 +156,15 @@ namespace TournamentLib
 				stream.WriteLine(t.Name);
 			stream.Close();
 		}
+
+		public void PrintTeams()
+		{
+			Console.BackgroundColor = ConsoleColor.DarkGray;
+			foreach (Team t in teams)
+				Console.WriteLine(t.Name);
+			Console.BackgroundColor = ConsoleColor.Black;
+			Console.ReadKey();
+			Console.Clear();
+		}
 	}
 }
