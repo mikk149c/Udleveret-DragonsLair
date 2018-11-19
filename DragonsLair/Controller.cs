@@ -93,8 +93,7 @@ namespace DragonsLair
 				if (teams.Count >= 2)
 				{
 					newRound = new Round();
-					//scrambled = scramble(teams.ToList());
-					scrambled = teams.ToList();
+					scrambled = scramble(teams.ToList());
 
 					if (scrambled.Count % 2 != 0)
 					{
@@ -129,7 +128,7 @@ namespace DragonsLair
 
 					t.AddRound(newRound);
 
-					//if (printNewMatches) ShowScore(tournamentName);
+					if (printNewMatches) newRound.ToString();
 				}
 				else
 				{
