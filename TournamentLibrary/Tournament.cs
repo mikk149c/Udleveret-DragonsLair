@@ -51,6 +51,33 @@ namespace TournamentLib
 			rounds.Add(round);
 		}
 
+		public void SaveTeams()
+		{
+			string path = $"{Name}/Teams.txt";	// In the tournament subfolder there is a text file called Teams.txt
+			Directory.CreateDirectory(Name);	// Create a foulder with the name of the tournament
+			if (File.Exists(path))	// If a text file excists called Teams.txt, delete it
+				File.Delete(path);
+			StreamWriter stream = File.CreateText(path);
+			foreach (Team t in teams)	// For each team in this object, write the name of the team to the teams.txt file on a new line
+				stream.WriteLine(t.Name);
+			stream.Close();
+		}
+
+		public void PrintTeams()
+		{
+			Console.BackgroundColor = ConsoleColor.DarkGray;
+			foreach (Team t in teams)
+				Console.WriteLine(t.Name);
+			Console.BackgroundColor = ConsoleColor.Black;
+			Console.ReadKey();
+			Console.Clear();
+		}
+
+		public void ShowUnplayedMatches()
+		{
+			rounds[rounds.Count - 1].ShowUnplayedMatches();
+		}
+
 
 		// ** Setup Test ***************
 		public void SetupTestTeams()
@@ -143,28 +170,6 @@ namespace TournamentLib
 			round3.AddMatch(match7);
 
 			rounds.Add(round3);
-		}
-
-		public void SaveTeams()
-		{
-			string path = $"{Name}/Teams.txt";	// In the tournament subfolder there is a text file called Teams.txt
-			Directory.CreateDirectory(Name);	// Create a foulder with the name of the tournament
-			if (File.Exists(path))	// If a text file excists called Teams.txt, delete it
-				File.Delete(path);
-			StreamWriter stream = File.CreateText(path);
-			foreach (Team t in teams)	// For each team in this object, write the name of the team to the teams.txt file on a new line
-				stream.WriteLine(t.Name);
-			stream.Close();
-		}
-
-		public void PrintTeams()
-		{
-			Console.BackgroundColor = ConsoleColor.DarkGray;
-			foreach (Team t in teams)
-				Console.WriteLine(t.Name);
-			Console.BackgroundColor = ConsoleColor.Black;
-			Console.ReadKey();
-			Console.Clear();
 		}
 	}
 }

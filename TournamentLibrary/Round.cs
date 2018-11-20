@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace TournamentLib
 {
@@ -78,5 +79,12 @@ namespace TournamentLib
 			}
 			return temp;
 		}
-    }
+
+		internal void ShowUnplayedMatches()
+		{
+			foreach (Match m in matches)
+				if (m.Winner == null)
+					Console.Write($"\n{m.FirstOpponent}\n{m.SecondOpponent}\n\n");
+		}
+	}
 }

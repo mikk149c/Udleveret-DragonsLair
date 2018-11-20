@@ -158,17 +158,16 @@ namespace DragonsLair
 			list[v] = temp;
 		}
 
-
-		public void SaveMatch(string tournamentName, int roundNumber, string winningTeam)
+		public void SaveMatch(string tournamentName, string winningTeam)
 		{
             Tournament t = tournamentRepository.GetTournament(tournamentName);
-            Round r = t.GetRound(roundNumber);
+			Round r = t.GetRound(t.GetNumberOfRounds() - 1);
             Match m = r.GetMatch(winningTeam);
 
             if (m != null && m.Winner == null)
             {
                 Team w = t.GetTeam(winningTeam);
-                Console.WriteLine($"Kampen mellem {m.FirstOpponent} og {m.SecondOpponent} i runde {roundNumber} i turneringen {tournamentName} er nu afviklet. Vinderen blev {winningTeam}.");
+                Console.WriteLine($"Kampen mellem {m.FirstOpponent} og {m.SecondOpponent} i turneringen {tournamentName} er nu afviklet. Vinderen blev {winningTeam}.");
                 m.Winner = w;
             }
             else
@@ -176,6 +175,7 @@ namespace DragonsLair
                 Console.WriteLine($"Holdet {winningTeam} kan ikke være vinder i runde 2, da holdet enten ikke deltager i runde 2 eller kampen allerede er registreret med en vinder.");
             }
 		}
+
 
 		public void AddTeams(string tournamentName, List<string> teams)
 		{
@@ -189,6 +189,14 @@ namespace DragonsLair
 		{
 			Tournament t = tournamentRepository.GetTournament(tournamentName);
 			t.PrintTeams();
+		}
+
+		public void ShowUnplayedMatches(string tournamentName)
+		{
+			Tournament t = tournamentRepository.GetTournament(tournamentName);
+			t.ShowUnplayedMatches();
+			Console.ReadKey();
+			Console.Clear();
 		}
 	}
 }
