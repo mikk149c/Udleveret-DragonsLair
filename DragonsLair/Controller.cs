@@ -185,7 +185,7 @@ namespace DragonsLair
 			t.SaveTeams();
 		}
 
-		internal void ShowTeams(string tournamentName)
+		public void ShowTeams(string tournamentName)
 		{
 			Tournament t = tournamentRepository.GetTournament(tournamentName);
 			t.PrintTeams();
